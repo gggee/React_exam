@@ -4,15 +4,16 @@ import logo from './img/logo.jpg';
 import user from './img/user_img.png'
 import basket from './img/basket.png'
 import store from './img/online-store.png'
+import signIn from './img/door.png'
 const Home = () => {
     return (
         <div className="page_div">
             <header>
                 <img src={logo}></img>
-                <div class="div_links">
-                    <div class="link"><img class="img_header" src={store} alt=""/></div>
-                    <div class="link"><img class="img_header" src={basket} alt=""/></div>
-                    <div class="link" onClick={(e) => window.location.assign('http://localhost:3000/regist/')}><img class="img_header" src={user} alt=""/></div>
+                <div className="div_links">
+                    <div className="link" onClick={(e) => window.location.assign('http://localhost:3000/signIn/')}><img className="img_header" src={store} alt=""/></div>
+                    <div className="link" onClick={(e) => window.location.assign('http://localhost:3000/signIn/')}><img className="img_header" src={basket} alt=""/></div>
+                    <div className="link" onClick={(e) => window.location.assign('http://localhost:3000/signIn/')}><img className="img_header" src={signIn} alt=""/></div>
                 </div>
             </header>
         </div>
