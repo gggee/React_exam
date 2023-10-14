@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import "../pages/css/regist_stl.css";
 import logo from './img/logo.jpg';
 
@@ -17,10 +18,10 @@ const Regist = () => {
 
     const handle_submit = (e) => {
         e.preventDefault();
-        const local_userStore = JSON.parse(localStorage.getItem("userData"));
+        const local_user_account = JSON.parse(localStorage.getItem("userAccount")) || [];
 
-        //проверка на существования такого пользователяя в localstorage
-        if (local_userStore && local_userStore.email === email) {
+        const user_account = local_user_account.some(user => user.email === email);
+        if (user_account) {
             setError("A user with this email already exists.");
         } else if (password.length < 8 || !email.includes("@mail.com")) {
             setError("Password or email is incorrect. Password must contain more than 8 characters!");
@@ -31,8 +32,8 @@ const Regist = () => {
                 email,
                 password,
             };
-            localStorage.setItem("userData", JSON.stringify(userData));
-            window.location.assign('http://localhost:3000/page_user/');
+            local_user_account.push(userData);
+            localStorage.setItem("userAccount", JSON.stringify(local_user_account));
         }
     };
 
@@ -47,7 +48,7 @@ const Regist = () => {
                 <input type="password" className="input_regist" id="passwordInput" placeholder="Password" value={password} onChange={handle_password} />
 
                 <div className="regist_question">
-                    <button type="submit" className="btn_regist">Sign up</button>
+                    <Link to="/page_user" className="btn_regist">Sign up</Link>
                     {error && <h4 className="error_message">{error}</h4>}
                 </div>
             </form>

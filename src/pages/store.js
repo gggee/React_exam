@@ -11,10 +11,89 @@ import mk from './img/mk.jpeg'
 import phasm from './img/phasm.jpg'
 import re4 from './img/re4.jpg'
 
+function Game({ img, title, genre, price }) {
+    return (
+        <div className="game_block">
+            <img src={img} className="img_game" alt={title} />
+            <h2 className="title">{title}</h2>
+            <div className="game_info">
+                <p className="p_info"><b>Genre:</b> {genre}</p>
+                <p className="p_info"><b>Price:</b> {price}$</p>
+                <p className="p_info">Add to Basket <img src={basket} className="img_basket" alt="Basket" /></p>
+            </div>
+        </div>
+    );
+}
+
 const Store = () => {
-    const [gameName, stateGame_Name] = useState('');
-    const [gener, stateGenre] = useState('');
-    const [price, statePrice]= useState('');
+    const [gameName, setGameName] = useState('');
+    const [gameGenre, setGenre] = useState('');
+    const [games] = useState([
+        {
+            img: re2,
+            title: "Resident evil 2",
+            genre: "Survival horror",
+            price: getRandomInt(200, 5000)
+        },
+        {
+            img: lou2,
+            title: "The last of us",
+            genre: "Action-adventure; Survival horror; Stealth action",
+            price: getRandomInt(200, 5000)
+        },
+        {
+            img: detroit,
+            title: "Detroit",
+            genre: "Action-adventure",
+            price: getRandomInt(200, 5000)
+        },
+        {
+            img: mk,
+            title: "Mortal kombat",
+            genre: "Fighting, Action, Adventure",
+            price: getRandomInt(200, 5000)
+        },
+        {
+            img: phasm,
+            title: "Phasmophobia",
+            genre: "Virtual Reality, Indie, Action, Puzzle",
+            price: getRandomInt(200, 5000),
+        },
+        {
+            img: re4,
+            title: "Resident evil 4 (remake)",
+            genre: "Survival horror, Shooter, Action-adventure",
+            price: getRandomInt(200, 5000)
+        }
+    ]);
+
+    const [filter_game, setFilter_game] = useState([]);
+    const [sort_option, setSort_option] = useState("none");
+
+    const handle_search = () => {
+        const search_name = gameName.toLowerCase();
+        const genre_name = gameGenre.toLowerCase();
+
+        const filters = games.filter(game => {
+            const gameTitle = game.title.toLowerCase();
+            const gameGenre = game.genre.toLowerCase();
+            return (
+                (search_name === "" || gameTitle.includes(search_name)) &&
+                (genre_name === "" || gameGenre.includes(genre_name))
+            );
+        });
+        setFilter_game(filters);
+    };
+
+    const handle_sort = () => {
+        let sortedGames = [...filter_game];
+        if (sort_option === "up") {
+            sortedGames.sort((a, b) => a.price - b.price);
+        } else if (sort_option === "down") {
+            sortedGames.sort((a, b) => b.price - a.price);
+        }
+        setFilter_game(sortedGames);
+    };
 
     function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -25,11 +104,11 @@ const Store = () => {
     return (
         <div>
             <header>
-                <img className='img_logo' onClick={(e) => window.location.assign('http://localhost:3000/page_user/')} src={logo}></img>
+                <img className='img_logo' onClick={() => window.location.assign('http://localhost:3000/page_user/')} src={logo} alt="Logo" />
                 <div className="div_links">
-                    <div className="link"><img className="img_header" src={store} alt="" /></div>
-                    <div className="link"><img className="img_header" src={basket} alt="" /></div>
-                    <div className="link" onClick={(e) => window.location.assign('http://localhost:3000/')}><img className="img_header" src={signOut} alt="" /></div>
+                    <div className="link"><img className="img_header" src={store} alt="Store" /></div>
+                    <div className="link"><img className="img_header" src={basket} alt="Basket" /></div>
+                    <div className="link" onClick={() => window.location.assign('http://localhost:3000/')}><img className="img_header" src={signOut} alt="Sign Out" /></div>
                 </div>
             </header>
 
@@ -38,83 +117,32 @@ const Store = () => {
             </div>
 
             <div className="search_block">
-                <input type="text" className="input_search" />
-                <button className="btn_search">Find</button>
+                <input type="text" className="input_search" placeholder="Search by title" value={gameName} onChange={(e) => setGameName(e.target.value)} />
+                <button className="btn_search" onClick={handle_search}>Find</button>
 
                 <div className="sort_wrap">
-                    <select name="" class="sort_input">
-                        <option className="none">Default</option>
-                        <option className="up">Ascending price</option>
-                        <option className="down">Descending price</option>
+                    <select name="" className="sort_input" onChange={(e) => setSort_option(e.target.value)}>
+                        <option value="none">Default</option>
+                        <option value="up">Ascending price</option>
+                        <option value="down">Descending price</option>
                     </select>
-                    <button className="btn_search">Sort</button>
+                    <button className="btn_search" onClick={handle_sort}>Sort</button>
                 </div>
             </div>
 
             <div className="games_container">
-                <div className="game_block">
-                    <img src={re2} className="img_game" />
-                    <h2 className="title">Resident evil 2</h2>
-                    <div className="game_info">
-                        <p className="p_info"><b>Genre:</b> Survival horror</p>
-                        <p className="p_info"><b>Price:</b> {getRandomInt(200, 5000)}$</p>
-                        <p className="p_info">Add to Basket <img src={basket} className="img_basket" alt="" /></p>
-                    </div>
-                </div>
-
-                <div className="game_block">
-                    <img src={lou2} className="img_game" />
-                    <h2 className="title">The last of us</h2>
-                    <div className="game_info">
-                        <p className="p_info"><b>Genre:</b> Action-adventure; Survival horror; Stealth action</p>
-                        <p className="p_info"><b>Price:</b> {getRandomInt(200, 5000)}$</p>
-                        <p className="p_info">Add to Basket <img src={basket} className="img_basket" alt="" /></p>
-                    </div>
-                </div>
-
-                <div className="game_block">
-                    <img src={detroit} className="img_game" />
-                    <h2 className="title">Detroit</h2>
-                    <div className="game_info">
-                        <p className="p_info"><b>Genre:</b> Action-adventure</p>
-                        <p className="p_info"><b>Price:</b> {getRandomInt(200, 5000)}$</p>
-                        <p className="p_info">Add to Basket <img src={basket} className="img_basket" alt="" /></p>
-                    </div>
-                </div>
-
-                <div className="game_block">
-                    <img src={mk} className="img_game" />
-                    <h2 className="title">Mortal kombat</h2>
-                    <div className="game_info">
-                        <p className="p_info"><b>Genre:</b> Fighting, Action, Adventure</p>
-                        <p className="p_info"><b>Price:</b> {getRandomInt(200, 5000)}$</p>
-                        <p className="p_info">Add to Basket <img src={basket} className="img_basket" alt="" /></p>
-                    </div>
-                </div>
-
-                <div className="game_block">
-                    <img src={phasm} className="img_game" />
-                    <h2 className="title">Phasmophobia</h2>
-                    <div className="game_info">
-                        <p className="p_info"><b>Genre:</b> Virtual Reality, Indie, Action, Puzzle</p>
-                        <p className="p_info"><b>Price:</b> {getRandomInt(200, 5000)}$</p>
-                        <p className="p_info">Add to Basket <img src={basket} className="img_basket" alt="" /></p>
-                    </div>
-                </div>
-
-                <div className="game_block">
-                    <img src={re4} className="img_game" />
-                    <h2 className="title">Resident evil 4 (remake)</h2>
-                    <div className="game_info">
-                        <p className="p_info"><b>Genre:</b> Survival horror, Shooter, Action-adventure</p>
-                        <p className="p_info"><b>Price:</b> {getRandomInt(200, 5000)}$</p>
-                        <p className="p_info">Add to Basket <img src={basket} className="img_basket" alt="" /></p>
-                    </div>
-                </div>
+                {filter_game.map((game, index) => (
+                    <Game
+                        key={index}
+                        img={game.img}
+                        title={game.title}
+                        genre={game.genre}
+                        price={game.price}
+                    />
+                ))}
             </div>
-
         </div>
     );
+};
 
-}
 export default Store;

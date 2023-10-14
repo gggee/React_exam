@@ -18,10 +18,10 @@ const SignIn = () => {
 
     const handle_submit = (e) => {
         e.preventDefault();
-        const storedUserData = JSON.parse(localStorage.getItem("userData"));
-        //проверка есть ли такой пользователь
-        if (storedUserData && storedUserData.email === email && storedUserData.password === password) {
-            window.location.assign('http://localhost:3000/page_user/');
+        const storedUserData = JSON.parse(localStorage.getItem("userAccount")) || [];
+        const user = storedUserData.find(user => user.email === email && user.password === password);
+        if (user) {
+            return <Link to="/page_user" />;
         } else {
             setError("Incorrect login or password or you still don’t have an account?");
         }
@@ -29,7 +29,7 @@ const SignIn = () => {
 
     return (
         <div className="signIn_div">
-            <img src={logo} className='img_logo' onClick={(e) => window.location.assign('http://localhost:3000/')} alt="Logo" />
+            <img src={logo} className='img_logo' onClick={() => window.location.assign('http://localhost:3000/')} alt="Logo" />
             <form onSubmit={handle_submit} className="signIn_form">
                 <h1 className="h1_signIn">Authorization</h1>
                 <input type="email" className="input_regist" id="emailInput" placeholder="Login" value={email} onChange={handle_email} />
@@ -37,7 +37,7 @@ const SignIn = () => {
 
                 <div className="signIn_question">
                     <button type="submit" className="btn_signIn">Sign in</button>
-                    {error && <h4 className="subtitle">{error}<br/><Link to="/regist" className="link">Registration</Link></h4>}
+                    {error && <h4 className="subtitle">{error}<br /><Link to="/regist" className="link">Registration</Link></h4>}
                 </div>
             </form>
         </div>
