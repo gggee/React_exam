@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../pages/css/store_stl.css";
 import logo from './img/logo.jpg';
 import basket from './img/basket.png'
@@ -11,7 +12,7 @@ import mk from './img/mk.jpeg'
 import phasm from './img/phasm.jpg'
 import re4 from './img/re4.jpg'
 
-function Game({ img, title, genre, price }) {
+function Game({ img, title, genre, price, onAddToCart }) {
     return (
         <div className="game_block">
             <img src={img} className="img_game" alt={title} />
@@ -19,7 +20,15 @@ function Game({ img, title, genre, price }) {
             <div className="game_info">
                 <p className="p_info"><b>Genre:</b> {genre}</p>
                 <p className="p_info"><b>Price:</b> {price}$</p>
-                <p className="p_info">Add to Basket <img src={basket} className="img_basket" alt="Basket" /></p>
+                <p className="p_info">
+                    Add to Basket
+                    <img
+                        src={basket}
+                        className="img_basket"
+                        alt="Basket"
+                        onClick={() => onAddToCart({ img, title, genre, price })}
+                    />
+                </p>
             </div>
         </div>
     );
@@ -70,6 +79,18 @@ const Store = () => {
     const [filter_game, setFilter_game] = useState([]);
     const [sort_option, setSort_option] = useState("none");
 
+    const addToCart = (game) => {
+        const cart = JSON.parse(localStorage.getItem('games')) || [];
+        const existingGame = cart.find(item => item.title === game.title);
+        if (existingGame) {
+            existingGame.quantity += 1;
+        } else {
+            cart.push({ ...game, quantity: 1 });
+        }
+        localStorage.setItem('games', JSON.stringify(cart));
+    };
+
+
     const handle_search = () => {
         const search_name = gameName.toLowerCase();
         const genre_name = gameGenre.toLowerCase();
@@ -104,12 +125,17 @@ const Store = () => {
     return (
         <div>
             <header>
-                <img className='img_logo' onClick={() => window.location.assign('http://localhost:3000/page_user/')} src={logo} alt="Logo" />
+                <Link to="/page_user/">
+                    <img className='img_logo' src={logo} alt="Logo" />
+                </Link>
                 <div className="div_links">
                     <div className="link"><img className="img_header" src={store} alt="Store" /></div>
-                    <div className="link"><img className="img_header" src={basket} alt="Basket" /></div>
-                    <div className="link" onClick={() => window.location.assign('http://localhost:3000/')}><img className="img_header" src={signOut} alt="Sign Out" /></div>
-                </div>
+                    <Link to="/bag">
+                        <div className="link"><img className="img_header" src={basket} alt="Basket" /></div>
+                    </Link>
+                    <Link to="/">
+                        <div className="link"><img className="img_header" src={signOut} alt="Sign Out" /></div>
+                    </Link></div>
             </header>
 
             <div className="store_block">
@@ -138,6 +164,7 @@ const Store = () => {
                         title={game.title}
                         genre={game.genre}
                         price={game.price}
+                        onAddToCart={addToCart}
                     />
                 ))}
             </div>

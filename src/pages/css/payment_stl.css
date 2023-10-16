@@ -1,0 +1,86 @@
+.pay_txt {
+    padding-top: 15px;
+    color: white;
+    font: bolder 30px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.pay_form {
+    margin: auto;
+    margin-top: 60px;
+    padding-bottom: 25px;
+    width: 30%;
+    border-radius: 45px;
+    text-align: center;
+    background-color: #ee0154c4;
+}
+
+.card {
+    max-width: 500px;
+    margin: auto;
+    color: white;
+    border-radius: 20 px;
+}
+
+.btn.btn-primary {
+    margin: auto;
+    margin-top: 20px;
+    width: 30%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0 15px;
+    background-image: linear-gradient(to right, #f5226cc4 0%, #de2365d6 51%, #f56295c4 100%);
+    border: none;
+    border-radius: 20px;
+    transition: 0.5s;
+    background-size: 200% auto;
+}
+
+.btn.btn.btn-primary:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.form-control {
+    color: white;
+    background-color: black;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    height: 60px;
+    width: 60%;
+    padding-left: 20px;
+    vertical-align: middle;
+    font: 16px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.form-control:focus {
+    color: white;
+    background-color: black;
+    outline: none;
+}
+
+.text {
+    margin-bottom: 5px;
+    font: 20px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+::placeholder {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.pay_span {
+    padding-left: 20px;
+    font: bolder 20px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.true_pay {
+    margin: auto;
+    margin-top: 150px;
+    width: 50%;
+    text-align: center;
+    font: bolder 30px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #ee0154c4;
+}

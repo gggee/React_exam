@@ -1,0 +1,113 @@
+.bag_block {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.txt_bag,
+.cnt {
+    color: white;
+}
+
+.game_item {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 20px 50px 20px 50px;
+    margin-top: 20px;
+    width: 50%;
+    border: 3px solid #ee0154c4;
+    border-radius: 20px;
+    justify-content: space-between;
+}
+
+.bag_info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 40px;
+}
+
+.game_txt {
+    color: white;
+    margin: 5px;
+    font-size: 24px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.game_title {
+    color: #ee0154e8;
+    margin: 5px;
+    font: bolder 30px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.game_line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.count {
+    display: flex;
+    align-items: center;
+}
+
+.count_minus,
+.count_plus {
+    width: 35px;
+    height: 35px;
+    background-color: #ee0154c4;
+    border-radius: 5px;
+    font-size: 30px;
+    margin: 0 15px 0 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.game_dlt {
+    width: 32px;
+    height: 32px;
+    margin-left: 600px;
+    transition: 1s;
+}
+
+.game_dlt:hover {
+    transform: scale(1.2);
+}
+
+.img_bag {
+    width: 210px;
+    height: 270px;
+    border-radius: 10px;
+}
+
+.buy_block {
+    margin: auto;
+    width: 30%;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+}
+
+.total_txt {
+    font: bolder 30px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #ee0154e8;
+    margin: 40px;
+}
+
+.remove_btn {
+    cursor: pointer;
+    transition: 1s;
+}
+
+.buy_btn{
+    margin-top: 30px;
+    width: 100px;
+    height: 90px;
+    transition: 1s;
+}
+
+.remove_btn:hover, .buy_btn:hover {
+    transform: scale(1.1);
+}

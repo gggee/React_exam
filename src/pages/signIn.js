@@ -29,7 +29,9 @@ const SignIn = () => {
 
     return (
         <div className="signIn_div">
-            <img src={logo} className='img_logo' onClick={() => window.location.assign('http://localhost:3000/')} alt="Logo" />
+            <Link to="/page_user/">
+                <img className='img_logo' src={logo} alt="Logo" />
+            </Link>
             <form onSubmit={handle_submit} className="signIn_form">
                 <h1 className="h1_signIn">Authorization</h1>
                 <input type="email" className="input_regist" id="emailInput" placeholder="Login" value={email} onChange={handle_email} />

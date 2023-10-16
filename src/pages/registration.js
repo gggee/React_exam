@@ -39,7 +39,9 @@ const Regist = () => {
 
     return (
         <div className="regist_div">
-            <img src={logo} className='img_logo' onClick={() => window.location.assign('http://localhost:3000/')} alt="Logo" />
+            <Link to="/page_user/">
+                <img className='img_logo' src={logo} alt="Logo" />
+            </Link>
             <form onSubmit={handle_submit} className="regist_form">
                 <h1 className="h1_regist">Registration</h1>
                 <input type='text' className="input_regist" id="nameInput" placeholder="Name" />
