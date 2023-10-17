@@ -23,7 +23,9 @@ const Payment = () => {
                             <img className='img_logo' src={logo} alt="Logo" />
                         </Link>
                         <div className="div_links">
-                            <div className="link"><img className="img_header" src={store} alt="Store" /></div>
+                            <Link to="/store">
+                                <div className="link"><img className="img_header" src={store} alt="Store" /></div>
+                            </Link>
                             <Link to="/bag">
                                 <div className="link"><img className="img_header" src={basket} alt="Basket" /></div>
                             </Link>
@@ -54,7 +56,7 @@ const Payment = () => {
                                 <input className="form-control" type="text" placeholder="MM/YYYY" />
                             </div>
                             <div>
-                                <p class="text">CVV/CVC</p>
+                                <p className="text">CVV/CVC</p>
                                 <input className="form-control" type="password" placeholder="***" />
                             </div>
                             <div className="btn btn-primary" onClick={handlePayment}>
@@ -67,5 +69,4 @@ const Payment = () => {
         </div>
     );
 }
-
 export default Payment;
